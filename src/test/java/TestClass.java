@@ -12,7 +12,17 @@ public class TestClass extends BrowserSetup{
        // Method method = M;
         logger.info("test case 1");
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUserName().enterPwd().clickLoginBtn();
+        loginPage.enterUserName().enterPwd().clickLoginBtn()
+        .selectFromNavMenu("SRP New Inquiry Form")
+        .verifyFormTitle()
+        .enterFirstName("javed")
+        .enterSecondName("ahmed")
+        .selectCampus("");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         logger.info("test case 1");
     }
 }
