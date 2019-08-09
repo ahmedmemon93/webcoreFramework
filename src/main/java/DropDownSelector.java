@@ -12,11 +12,17 @@ public class DropDownSelector {
     }
 
     public WebElement selectOption(String optionToselect){
+        if (selector.findElements(By.xpath("./option")).size()==1){
+            optionToselect="-None-";
+        }
         option = selector.findElement(By.xpath("//option[text()='"+optionToselect+"']"));
         return option;
     }
     public WebElement selectOption(int index){
-        option = selector.findElement(By.xpath("//option[position()="+index+"]"));
+        if (selector.findElements(By.xpath("./option")).size()==1){
+            index=1;
+        }
+        option = selector.findElement(By.xpath("./option[position()="+index+"]"));
         return option;
     }
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import sun.awt.windows.WBufferStrategy;
 
 public class SrpNewInquiryForm extends Helper{
 @FindBy(css = "h2.mainTitle")
@@ -22,14 +23,34 @@ private WebElement retainOwnerCbox;
 private WebElement programeDropDown;
 @FindBy (id = "j_id0:theentireform:j_id27:j_id42:j_id55:specPicklist")
 private WebElement specializatioDropDown;
-@FindBy (id = "j_id0:theentireform:j_id27:j_id42:j_id51:programPanel")
+@FindBy (id = "j_id0:theentireform:j_id27:j_id42:j_id51:programStatus.start")
 private WebElement loadingTextPrograme;
-@FindBy (id="j_id0:theentireform:j_id27:j_id42:j_id55:specPanel")
+@FindBy (id="j_id0:theentireform:j_id27:j_id42:j_id55:specStatus.start")
 private WebElement loadingTextSpec;
-
+@FindBy (id = "j_id0:theentireform:j_id27:j_id42:j_id58:timeframe")
+private WebElement timeFramDropDown;
+@FindBy (id = "j_id0:theentireform:j_id27:j_id42:j_id61:gender")
+private WebElement genderDropDown;
+@FindBy (id = "j_id0:theentireform:j_id27:j_id64:j_id65:emailAdd")
+private WebElement emailInput;
+@FindBy (id = "j_id0:theentireform:j_id27:j_id64:j_id67:Home_Phone")
+private WebElement homePhoneNumber;
+@FindBy (id = "j_id0:theentireform:j_id27:j_id73:j_id80:Country")
+private WebElement countryDropDown;
+@FindBy (id = "j_id0:theentireform:j_id27:j_id86:j_id89:campaignList")
+private WebElement campaignDropDown;
+@FindBy (id = "j_id0:theentireform:j_id27:j_id28:subBtn")
+private WebElement saveBtn;
+@FindBy (xpath = "//a[text()='Go to Opportunity']")
+private WebElement goToOpportunityBtn;
 private String campusDropDownId="j_id0:theentireform:j_id27:j_id42:j_id47:campusPicklist";
 private String programeDropDwonId ="j_id0:theentireform:j_id27:j_id42:j_id51:programPicklist";
 private String specializationDropDownId ="j_id0:theentireform:j_id27:j_id42:j_id55:specPicklist";
+private String timeFrameDropDownId="j_id0:theentireform:j_id27:j_id42:j_id58:timeframe";
+private String genderDropDownId ="j_id0:theentireform:j_id27:j_id42:j_id61:gender";
+private String countryDropDownId ="j_id0:theentireform:j_id27:j_id73:j_id80:Country";
+private String campaignDropDownId="j_id0:theentireform:j_id27:j_id86:j_id89:campaignList";
+
 
 WebDriver driver;
     public SrpNewInquiryForm(WebDriver driver){
@@ -69,7 +90,10 @@ WebDriver driver;
         DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(campusDropDownId));
         dropDownSelector.selectOption(index).click();
         campusPick.click();
+        waitUntilElementVisible(loadingTextPrograme);
         waitUntilElementDisappears(loadingTextPrograme);
+
+        //waitUntilElementDisappears(loadingTextPrograme);
        return this;
     }
     public SrpNewInquiryForm checkRetainowner(){
@@ -99,6 +123,7 @@ WebDriver driver;
         programeDropDown.click();
         DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(programeDropDwonId));
         dropDownSelector.selectOption(index).click();
+        waitUntilElementVisible(loadingTextSpec);
         waitUntilElementDisappears(loadingTextSpec);
         return this;
     }
@@ -119,4 +144,63 @@ WebDriver driver;
         return this;
     }
 
+    public SrpNewInquiryForm selectTimeFrame(String timeFrame){
+        waitUntilElementVisible(timeFramDropDown);
+        timeFramDropDown.click();
+        DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(timeFrameDropDownId));
+        dropDownSelector.selectOption(timeFrame).click();
+        timeFramDropDown.click();
+        return this;
+    }
+    public SrpNewInquiryForm selectGender(String gender){
+        waitUntilElementVisible(genderDropDown);
+        genderDropDown.click();
+        DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(genderDropDownId));
+        dropDownSelector.selectOption(gender).click();
+        genderDropDown.click();
+        return this;
+    }
+
+    public SrpNewInquiryForm enterEmail(String emailId){
+        emailInput.sendKeys(emailId);
+        return this;
+    }
+    public SrpNewInquiryForm homePhone(String phoneNum){
+        homePhoneNumber.sendKeys(phoneNum);
+        return this;
+    }
+
+    public SrpNewInquiryForm selectCountry(String countryName){
+        countryDropDown.click();
+        DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(countryDropDownId));
+        dropDownSelector.selectOption(countryName).click();
+
+        return this;
+    }
+    public SrpNewInquiryForm selectCountry(int index){
+        countryDropDown.click();
+        DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(countryDropDownId));
+        dropDownSelector.selectOption(index).click();
+
+        return this;
+    }
+    public SrpNewInquiryForm selectCampaign(int index){
+        campaignDropDown.click();
+        DropDownSelector dropDownSelector = new DropDownSelector(new ElementSelector.ById(campaignDropDownId));
+        dropDownSelector.selectOption(index).click();
+        campaignDropDown.click();
+        return this;
+    }
+
+    public SrpNewInquiryForm clickSaveBtn(){
+        saveBtn.click();
+        waitUntilElementVisible(goToOpportunityBtn,30);
+        return this;
+    }
+
+    public void clickOpportunity(){
+
+        goToOpportunityBtn.click();
+        waitUntilElementVisible(goToOpportunityBtn,30);
+    }
 }

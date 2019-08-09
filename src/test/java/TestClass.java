@@ -20,8 +20,16 @@ public class TestClass extends BrowserSetup {
                 .enterFirstName("javed")
                 .enterSecondName("ahmed")
                 .selectCampus(3)
-                .selectPrograme(4)
-                .selectSpecialization(2);
+                .selectPrograme(2)
+                .selectSpecialization(2)
+                .selectTimeFrame("12+ months")
+                .selectGender("Female")
+                .enterEmail("ahmed_@gmail.com")
+                .homePhone("93354125414")
+                .selectCountry("AZERBAIJAN")
+                .selectCampaign(3)
+                .clickSaveBtn()
+                .clickOpportunity();
         try {
             Thread.sleep(50000);
         } catch (InterruptedException e) {
