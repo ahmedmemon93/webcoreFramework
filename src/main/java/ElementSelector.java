@@ -4,7 +4,7 @@ public abstract class ElementSelector {
     String locatorValue;
     public abstract String xpathCreator(String tagName, String className);
     public String contains(String attribute, String value){
-        return "contains(@"+attribute+","+"'"+ value+"')";
+        return "[contains(@"+attribute+","+"'"+ value+"')]";
     }
     public static class ById extends ElementSelector{
 
@@ -15,9 +15,7 @@ public abstract class ElementSelector {
             StringBuilder xpathString = new StringBuilder();
              xpathString.append("//")
                     .append(StringUtils.isBlank(tagName)?"*":tagName.trim())
-                    .append("[")
-                    .append(contains("class",className))
-                    .append("]")
+                    .append(StringUtils.isBlank(className) ? "" : contains("class",className))
                     .append("[@id='")
                     .append(locatorValue)
                     .append("']");

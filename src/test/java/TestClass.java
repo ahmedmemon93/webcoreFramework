@@ -5,21 +5,25 @@ import org.testng.log4testng.Logger;
 import java.beans.MethodDescriptor;
 import java.lang.reflect.Method;
 
-public class TestClass extends BrowserSetup{
+public class TestClass extends BrowserSetup {
     public Logger logger = Logger.getLogger(TestClass.class);
+
     @Test
-    public void testCase1(){
-       // Method method = M;
+    public void testCase1() {
+        // Method method = M;
         logger.info("test case 1");
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterUserName().enterPwd().clickLoginBtn()
-        .selectFromNavMenu("SRP New Inquiry Form")
-        .verifyFormTitle()
-        .enterFirstName("javed")
-        .enterSecondName("ahmed")
-        .selectCampus("");
+                .selectFromNavMenu("SRP New Inquiry Form")
+                .verifyFormTitle()
+                .unCheckRetainowner()
+                .enterFirstName("javed")
+                .enterSecondName("ahmed")
+                .selectCampus(3)
+                .selectPrograme(4)
+                .selectSpecialization(2);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(50000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

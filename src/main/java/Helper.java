@@ -8,9 +8,14 @@ import java.util.concurrent.TimeUnit;
 public class Helper {
 
     private WebDriver driver = BrowserSetup.driver;
-    WebDriverWait wait = new WebDriverWait(driver,10);
+    private static WebDriverWait wait;
     public void waitUntilElementVisible(WebElement element){
+        wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    public void waitUntilElementDisappears(WebElement element){
+        wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
     public void waitUntilElementVisible(WebElement element, int timeoutSeconds){
