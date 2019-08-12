@@ -10,11 +10,11 @@ public class Helper {
     private WebDriver driver = BrowserSetup.driver;
     private static WebDriverWait wait;
     public void waitUntilElementVisible(WebElement element){
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver,15);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
     public void waitUntilElementDisappears(WebElement element){
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver,15);
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 

@@ -17,24 +17,20 @@ public class TestClass extends BrowserSetup {
                 .selectFromNavMenu("SRP New Inquiry Form")
                 .verifyFormTitle()
                 .unCheckRetainowner()
-                .enterFirstName("javed")
-                .enterSecondName("ahmed")
+                .enterFirstName("Ramesh")
+                .enterSecondName("Automation")
                 .selectCampus(3)
                 .selectPrograme(2)
                 .selectSpecialization(2)
                 .selectTimeFrame("12+ months")
                 .selectGender("Female")
-                .enterEmail("ahmed_@gmail.com")
+                .enterEmail("Test@nomail.com")
                 .homePhone("93354125414")
                 .selectCountry("AZERBAIJAN")
                 .selectCampaign(3)
                 .clickSaveBtn()
-                .clickOpportunity();
-        try {
-            Thread.sleep(50000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+                .clickOpportunity()
+                .clickOnCrossBtnofTab();
         logger.info("test case 1");
     }
 }

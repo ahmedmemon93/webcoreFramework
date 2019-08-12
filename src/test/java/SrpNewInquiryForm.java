@@ -15,7 +15,7 @@ private WebElement firstNameInput;
 private WebElement lastNameInput;
 @FindBy (id = "j_id0:theentireform:j_id27:j_id42:j_id47:campusPicklist")
 private WebElement campusPick;
-@FindBy (css = "iframe[title='accessibility title']")
+@FindBy (xpath = "//iframe[@title='accessibility title'][1]")
 private WebElement iframe;
 @FindBy (id = "j_id0:theentireform:j_id27:j_id38:j_id39:opp__retrainowner")
 private WebElement retainOwnerCbox;
@@ -198,9 +198,9 @@ WebDriver driver;
         return this;
     }
 
-    public void clickOpportunity(){
-
+    public HomePage clickOpportunity(){
         goToOpportunityBtn.click();
-        waitUntilElementVisible(goToOpportunityBtn,30);
+        driver.switchTo().parentFrame();
+        return new HomePage(driver);
     }
 }
